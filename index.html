@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+    <title>ToDoList</title>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo right">Todo</a>
+            <ul id="nav-mobile">
+                <li class="logged-in">
+                    <a href="#" id="logout">Logout</a>
+                </li>
+                <li class="logged-in" id="user-email"></li>
+                <li class="logged-out">
+                    <a href="#" class="modal-trigger" data-target="modal-login" id="login">Login</a>
+                </li>
+                <li class="logged-out">
+                    <a href="#" class="modal-trigger" data-target="modal-signup" id="signup">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form id="add-todo-form" class="logged-in">
+            <input type="text" name="title" placeholder="Add Task">
+            <button class="waves-effect waves-light btn">Add Task</button>
+        </form>
+
+        <ul id="todo-list" class="collection">
+
+        </ul>
+
+        <!-- Modal Edit -->
+        <div id="modal-edit" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <input type="text" name="newtitle" placeholder="Update Task">
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="update-btn" class="modal-close waves-effect waves-light btn">Update</a>
+            </div>
+        </div>
+        <!-- Modal Login -->
+        <div id="modal-login" class="modal">
+            <div class="modal-content">
+                <form action="" id="login-form">
+                    <h4>Login</h4>
+                    <div class="input-field">
+                        <label for="email">Email address</label>
+                        <input type="text" id="login-email" name="email" placeholder="email@mail.com" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="password">Password</label>
+                        <input type="password" id="login-password" name="password" placeholder="********" required>
+                    </div>
+                    <p class="error pink-text center-align"></p>
+                    <div class="modal-footer">
+                        <button class="modal-close waves-effect waves-light btn">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Modal Sign up -->
+        <div id="modal-signup" class="modal">
+            <div class="modal-content">
+                <form action="" id="signup-form">
+                    <h4>Sign up</h4>
+                    <div class="input-field">
+                        <label for="email">Email address</label>
+                        <input type="email" id="signup-email" name="email" placeholder="email@mail.com" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="password">Password</label>
+                        <input type="password" id="signup-password" name="password" placeholder="********" required>
+                    </div>
+                    <p class="error pink-text center-align"></p>
+                    <div class="modal-footer">
+                        <button class="modal-close waves-effect waves-light btn">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+    <script>
+        let modalInstance = null;
+        document.addEventListener("DOMContentLoaded", function () {
+            var elems = document.querySelectorAll(".modal");
+            modalInstance = M.Modal.init(elems);
+        });
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9LLARgMJjmoX50g1LMR_QpY4JgnMkvOM",
+            authDomain: "myfirsttodolist-cd84e.firebaseapp.com",
+            projectId: "myfirsttodolist-cd84e",
+            storageBucket: "myfirsttodolist-cd84e.appspot.com",
+            messagingSenderId: "8138048754",
+            appId: "1:8138048754:web:a587617ea08a3ccfd9fc6b",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+    </script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
